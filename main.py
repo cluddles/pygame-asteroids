@@ -15,6 +15,9 @@ def game_loop(screen):
     clock = pygame.time.Clock()
     dt = 0
     running = True
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    Player.containers = (updatable, drawable)
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     while running:
         # nice if we can quit
@@ -25,10 +28,12 @@ def game_loop(screen):
         if keys[pygame.K_ESCAPE]:
             running = False
         # logic
-        player.update(dt)
+        for thing in updatable:
+            thing.update(dt)
         # render
         screen.fill((0,0,0))
-        player.draw(screen)
+        for thing in drawable:
+            thing.draw(screen)
         pygame.display.flip()
         dt = clock.tick(FPS) / 1000
 
