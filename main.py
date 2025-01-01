@@ -45,7 +45,7 @@ def game_loop(screen):
                 running = False
             for shot in shots:
                 if asteroid.is_colliding(shot):
-                    asteroid.kill()
+                    asteroid.split()
                     shot.kill()
         # render
         screen.fill((0,0,0))
