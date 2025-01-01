@@ -17,10 +17,14 @@ def game_loop(screen):
     running = True
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     while running:
-        # input
+        # nice if we can quit
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_ESCAPE]:
+            running = False
+        # logic
         player.update(dt)
         # render
         screen.fill((0,0,0))
