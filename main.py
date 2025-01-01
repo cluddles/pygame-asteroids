@@ -9,14 +9,20 @@ from player import Player
 def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    game_loop(screen)
+
+def game_loop(screen):
     clock = pygame.time.Clock()
     dt = 0
     running = True
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     while running:
+        # input
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+        player.update(dt)
+        # render
         screen.fill((0,0,0))
         player.draw(screen)
         pygame.display.flip()
