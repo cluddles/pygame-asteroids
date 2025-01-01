@@ -1,6 +1,6 @@
-Asteroids clone (...ish, there's lots of missing functionality) written in Python/Pygame
+Asteroids clone written in Python/Pygame
 
-How to run
+### How to run
 
 Setup virtual environment:
 ```
@@ -14,3 +14,10 @@ Run:
 python3 main.py
 ```
 or just `./main.py`
+
+### To Do
+
+There's a lot of stuff missing. The top 3 things I'd want to address:
+* Game Over shouldn't exit the game
+* Objects should wrap instead of floating off into infinity
+* Proper player acceleration
