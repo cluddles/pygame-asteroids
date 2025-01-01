@@ -1,6 +1,5 @@
-# this allows us to use code from
-# the open-source pygame library
-# throughout this file
+#!/usr/bin/env python3
+
 import pygame
 
 from constants import *

@@ -13,3 +13,4 @@ Run:
 ```
 python3 main.py
 ```
+or just `./main.py`
