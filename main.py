@@ -36,6 +36,10 @@ def game_loop(screen):
         # logic
         for thing in updatable:
             thing.update(dt)
+        for asteroid in asteroids:
+            if asteroid.is_colliding(player):
+                print("Game over!")
+                running = False
         # render
         screen.fill((0,0,0))
         for thing in drawable:
