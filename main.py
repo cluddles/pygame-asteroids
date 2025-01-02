@@ -3,6 +3,7 @@
 import pygame
 
 from constants import *
+from circleshape import CircleShape
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
@@ -12,6 +13,21 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     game_loop(screen)
+
+def wrap(thing, screen):
+    if not isinstance(thing, CircleShape):
+        return
+    w = screen.get_width()
+    h = screen.get_height()
+    r = thing.radius
+    if thing.position.x + r < 0:
+        thing.position.x += w + r * 2
+    elif thing.position.x - r >= w:
+        thing.position.x -= w + r * 2
+    if thing.position.y + r < 0:
+        thing.position.y += h + r * 2
+    elif thing.position.y - r >= h:
+        thing.position.y -= h + r * 2
 
 def game_loop(screen):
     clock = pygame.time.Clock()
@@ -38,6 +54,7 @@ def game_loop(screen):
         # logic
         for thing in updatable:
             thing.update(dt)
+            wrap(thing, screen)
         for asteroid in asteroids:
             if asteroid.is_colliding(player):
                 print("Game over!")
