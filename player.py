@@ -25,9 +25,11 @@ class Player(CircleShape):
     def rotate(self, dt):
         self.rotation += PLAYER_TURN_SPEED * dt
 
-    def move(self, dt):
+    def thrust(self, dt):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
-        self.position += forward * PLAYER_SPEED * dt
+        self.velocity += forward * PLAYER_THRUST * dt
+        if self.velocity.magnitude() > PLAYER_MAX_SPEED:
+            self.velocity.scale_to_length(PLAYER_MAX_SPEED)
 
     def shoot(self):
         shot = Shot(self.position.x, self.position.y, SHOT_RADIUS)
@@ -44,8 +46,9 @@ class Player(CircleShape):
             self.rotate(dt)
         # thrust
         if keys[pygame.K_w] or keys[pygame.K_UP]:
-            self.move(dt)
+            self.thrust(dt)
         if keys[pygame.K_s] or keys[pygame.K_DOWN]:
-            self.move(-dt)
+            self.thrust(-dt)
         if keys[pygame.K_SPACE] and self.shoot_cooldown <= 0:
             self.shoot()
+        self.position += self.velocity

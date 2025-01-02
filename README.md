@@ -1,5 +1,9 @@
 Asteroids clone written in Python/Pygame
 
+* WASD (or arrow keys) to move
+* Space to shoot
+* Escape to exit application
+
 ### How to run
 
 Setup virtual environment:
