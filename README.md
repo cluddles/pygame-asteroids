@@ -19,9 +19,3 @@ python3 main.py
 ```
 or just `./main.py`
 
-### To Do
-
-There's a lot of stuff missing. The top 3 things I'd want to address:
-* Game Over shouldn't exit the game
-* Objects should wrap instead of floating off into infinity
-* Proper player acceleration

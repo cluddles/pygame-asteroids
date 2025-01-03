@@ -11,6 +11,7 @@ from shot import Shot
 
 class Game:
     def __init__(self):
+        self.game_over = False
         self.updatable = pygame.sprite.Group()
         self.drawable = pygame.sprite.Group()
         self.asteroids = pygame.sprite.Group()
@@ -45,15 +46,15 @@ class Game:
             thing.update(dt)
             self.wrap(thing)
         for asteroid in self.asteroids:
-            if asteroid.is_colliding(self.player):
+            if not self.game_over and asteroid.is_colliding(self.player):
                 print("Game over!")
+                self.game_over = True
+                self.player.kill()
             for shot in self.shots:
                 if asteroid.is_colliding(shot):
                     asteroid.split()
                     shot.kill()
 
     def render(self, screen):
-        screen.fill((0,0,0))
         for thing in self.drawable:
             thing.draw(screen)
-        pygame.display.flip()
